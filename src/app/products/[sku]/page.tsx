@@ -4,12 +4,15 @@ import { getProductDetails } from "@/services/productService";
 import { Specification } from "@/types/product-type";
 import Link from "next/link";
 
+type Params = Promise<{ sku: string }>;
+
 export default async function ProductDetail({
   params,
 }: {
-  params: { sku: string };
+  params: Params;
 }) {
-  const { sku } = params;
+  const { sku } = await params;
+  
   const product = await getProductDetails(sku);
 
   if (!product) {

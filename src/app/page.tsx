@@ -4,15 +4,18 @@ import { getProducts } from "@/services/productService";
 import InputSearch from "@/components/InputSearch";
 import Paginator from "@/components/Paginator";
 
+type SearchParams = Promise<{ search?: string; page?: string }>;
+
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { search?: string; page?: string };
+  searchParams: SearchParams;
 }) {
-  const search = searchParams?.search || "";
-  const page = Number(searchParams?.page) || 1;
+  const { search = "", page = "1" } = await searchParams; 
+  const pageNumber = Number(page) || 1;
   const size = 5;
-  const { products, isLastPage } = await getProducts(search, page, size);
+
+  const { products, isLastPage } = await getProducts(search, pageNumber, size);
 
   return (
     <main className="p-0">
@@ -20,19 +23,19 @@ export default async function Home({
         <InputSearch key={search || "initial"} search={search} />
       </Header>
 
-      {products?.length === 0 ? (
+      {products.length > 0 ? (
+        <ProductGrid products={products} />
+      ) : (
         <p className="text-gray-500 text-center mt-4">
           No se encontraron productos.
         </p>
-      ) : (
-        <ProductGrid products={products} />
       )}
 
       <Paginator
-        isDisabled={products?.length === 0}
+        isDisabled={products.length === 0}
         lastPage={isLastPage}
         search={search}
-        page={page}
+        page={pageNumber}
       />
     </main>
   );

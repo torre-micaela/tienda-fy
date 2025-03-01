@@ -38,7 +38,7 @@ const InputSearch = ({ search }: InputSearchProps) => {
     <input
       className="text-black p-2 outline-none rounded-md"
       type="text"
-      placeholder="Buscar producto.."
+      placeholder="Ingresa nombre o sku.."
       value={value}
       onChange={onChangeInput}
     />
