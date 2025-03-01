@@ -29,6 +29,9 @@ export async function getProducts(
 
 export async function getProductDetails(sku: string) {
   try {
+    if (!sku) {
+      throw new Error("SKU no válido o vacío");
+    }
     const product = await callApi({
       url: "/products",
       params: { sku },
