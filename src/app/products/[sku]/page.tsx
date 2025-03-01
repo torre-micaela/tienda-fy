@@ -9,8 +9,7 @@ export default async function ProductDetail({
 }: {
   params: { sku: string };
 }) {
-  const skuParams= await params;
-  const {sku} = skuParams
+  const { sku } = params;
   const product = await getProductDetails(sku);
 
   if (!product) {

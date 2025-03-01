@@ -9,9 +9,8 @@ export default async function Home({
 }: {
   searchParams: { search?: string; page?: string };
 }) {
-  const params = await searchParams;
-  const search = params?.search || "";
-  const page = Number(params?.page) || 1;
+  const search = searchParams?.search || "";
+  const page = Number(searchParams?.page) || 1;
   const size = 5;
   const { products, isLastPage } = await getProducts(search, page, size);
 
