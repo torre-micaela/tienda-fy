@@ -9,8 +9,9 @@ export default async function Home({
 }: {
   searchParams: { search?: string; page?: string };
 }) {
-  const search = await searchParams?.search || "";
-  const page = Number(searchParams?.page) || 1;
+  const params = await searchParams;
+  const search = params?.search || "";
+  const page = Number(params?.page) || 1;
   const size = 5;
   const { products, isLastPage } = await getProducts(search, page, size);
 
@@ -28,7 +29,12 @@ export default async function Home({
         <ProductGrid products={products} />
       )}
 
-      <Paginator isDisabled={products?.length === 0} lastPage={isLastPage} search={search} page={page}/>
+      <Paginator
+        isDisabled={products?.length === 0}
+        lastPage={isLastPage}
+        search={search}
+        page={page}
+      />
     </main>
   );
 }
