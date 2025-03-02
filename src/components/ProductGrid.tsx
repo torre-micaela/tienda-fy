@@ -1,12 +1,15 @@
-"use client"
 import { Product } from "@/types/product-type";
 import ProductCard from "./ProductCard";
 
-export default function ProductGrid({ products }: { products: Product[] }) {
+interface ProductGridProps {
+  products: Product[];
+}
+
+export default function ProductGrid({ products }: ProductGridProps) {
   return (
-    <div className="mt-5 p-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {products.map((product) => (
-        <ProductCard key={`${product.sku}-${product.name}`} product={product} />
+        <ProductCard key={product.sku} product={product} />
       ))}
     </div>
   );
