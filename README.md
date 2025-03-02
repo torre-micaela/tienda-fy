@@ -2,6 +2,7 @@
 
 Tienda FY es una aplicación web de e-commerce construida con **Next.js**, **TypeScript** y **TailwindCSS**. Permite a los usuarios **buscar productos**, **ver detalles** y **navegar paginación** sin recargar la página, ofreciendo una **experiencia fluida y optimizada**.
 
+Hosting en VERCEL: https://tienda-fy.vercel.app/
 ---
 
 ## 🚀 **Tecnologías Utilizadas**
